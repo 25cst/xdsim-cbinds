@@ -54,7 +54,9 @@ usize_is_size_t = true
 [defines]
 # "target_os = freebsd" = "DEFINE_FREEBSD"
 # "feature = serde" = "DEFINE_SERDE"
-
+"feature = v0-gate" = "XDSIM_GATE"
+"feature = v0-conn" = "XDSIM_CONN"
+"feature = v0-data" = "XDSIM_DATA"
 
 
 [export]
@@ -224,4 +226,4 @@ extra_bindings = []
 crates = []
 all_features = false
 default_features = false
-features = [ "v0" ]
+features = [ "v0-all" ]

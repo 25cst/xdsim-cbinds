@@ -10,13 +10,37 @@ use crate::v0::{
 pub type Gate = *const c_void;
 pub type GateMut = *mut c_void;
 
-unsafe extern "C" {
-    pub fn gate_tick(gate: GateMut, request: *const GateTickRequest) -> Slice; // [ *const Data ]
-    pub fn gate_draw(gate: Gate, request: *const GateDrawRequest) -> Graphic;
-    pub fn gate_def(gate: Gate) -> GateDefinition;
-    pub fn gate_props(gate: GateMut) -> PropertiesMut;
-    pub fn gate_serialize(gate: Gate) -> Slice;
-    pub fn gate_deserialize(bytes: Slice) -> GateMut;
+/// returns [ Data ]
+/// data must be malloced
+/// it will be freed by the program
+#[unsafe(no_mangle)]
+pub extern "C" fn gate_tick(gate: GateMut, request: *const GateTickRequest) -> Slice {
+    unimplemented!()
+}
+
+#[unsafe(no_mangle)]
+pub extern "C" fn gate_draw(gate: Gate, request: *const GateDrawRequest) -> Graphic {
+    unimplemented!()
+}
+
+#[unsafe(no_mangle)]
+pub extern "C" fn gate_def(gate: Gate) -> GateDefinition {
+    unimplemented!()
+}
+
+#[unsafe(no_mangle)]
+pub extern "C" fn gate_props(gate: GateMut) -> PropertiesMut {
+    unimplemented!()
+}
+
+#[unsafe(no_mangle)]
+pub extern "C" fn gate_serialize(gate: Gate) -> Slice {
+    unimplemented!()
+}
+
+#[unsafe(no_mangle)]
+pub extern "C" fn gate_deserialize(bytes: Slice) -> GateMut {
+    unimplemented!()
 }
 
 /// A single gate tick request

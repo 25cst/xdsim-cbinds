@@ -13,8 +13,11 @@ pub struct PackageDefinition {
 
 #[repr(C)]
 pub enum ComponentType {
+    #[cfg(feature = "v0-gate")]
     Gate,
+    #[cfg(feature = "v0-conn")]
     Connection,
+    #[cfg(feature = "v0-data")]
     Data,
 }
 
@@ -26,6 +29,7 @@ pub struct PackageIdent {
     pub patch: u16,
 }
 
-unsafe extern "C" {
-    pub fn package_definition() -> PackageDefinition;
+#[unsafe(no_mangle)]
+pub extern "C" fn package_definition() -> PackageDefinition {
+    unimplemented!()
 }
