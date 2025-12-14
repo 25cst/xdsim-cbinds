@@ -11,8 +11,10 @@ pub type Gate = *const c_void;
 pub type GateMut = *mut c_void;
 
 /// returns [ Data ]
-/// data must be malloced
+/// individual Data must be malloced
 /// it will be freed by the program
+/// in this particular case, slice.drop should only drop the slice
+/// and not the individual Data
 #[unsafe(no_mangle)]
 pub extern "C" fn gate_tick(gate: GateMut, request: *const GateTickRequest) -> Slice {
     unimplemented!()
@@ -40,6 +42,11 @@ pub extern "C" fn gate_serialize(gate: Gate) -> Slice {
 
 #[unsafe(no_mangle)]
 pub extern "C" fn gate_deserialize(bytes: Slice) -> GateMut {
+    unimplemented!()
+}
+
+#[unsafe(no_mangle)]
+pub extern "C" fn gate_drop(conn: GateMut) {
     unimplemented!()
 }
 

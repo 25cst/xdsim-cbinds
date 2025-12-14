@@ -124,9 +124,9 @@ include = [
     "FillStyle",
 
     # package_definition.rs
-    "PackageDefinition",
+    "ComponentHeader",
     "ComponentType",
-    "PackageIdent",
+    "ComponentIdent",
 ]
 exclude = []
 # prefix = "CAPI_"

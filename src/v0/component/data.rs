@@ -3,6 +3,7 @@ use core::ffi::c_void;
 use crate::v0::common::Slice;
 
 pub type Data = *const c_void;
+pub type DataMut = *mut c_void;
 
 #[unsafe(no_mangle)]
 #[cfg(feature = "v0-data")]
@@ -20,6 +21,12 @@ pub extern "C" fn data_deserialize(bytes: Slice) -> Data {
 
 #[unsafe(no_mangle)]
 #[cfg(feature = "v0-data")]
-pub extern "C" fn data_drop(data: Data) {
+pub extern "C" fn data_drop(data: DataMut) {
+    unimplemented!()
+}
+
+#[unsafe(no_mangle)]
+#[cfg(feature = "v0-data")]
+pub extern "C" fn data_default() -> Data {
     unimplemented!()
 }

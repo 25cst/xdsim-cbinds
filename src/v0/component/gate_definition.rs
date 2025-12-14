@@ -1,5 +1,5 @@
 use crate::v0::{
-    PackageIdent,
+    ComponentIdent,
     common::{Slice, Str},
     graphics::Vec2,
 };
@@ -19,10 +19,6 @@ pub struct GateDefinition {
     /// The visual bounding box (dimension) of the gate
     /// The bottom left corner is (0, 0), top right corner is (width, height)
     pub bounding_box: Vec2,
-
-    /// Gate identifier: the unique identifier for the gate type
-    /// filled in by macro
-    pub identifier: PackageIdent, // e.g. (package_name, gate-name, semver major, semver minor)
 }
 
 /// Representing a single input or output connection that the gate take.
@@ -32,6 +28,6 @@ pub struct GateDefinition {
 #[repr(C)]
 pub struct GateIOEntry {
     pub name: Str,
-    pub data_type: PackageIdent, // e.g. (package_name, gate-name, semver major, semver minor)
+    pub data_type: ComponentIdent, // e.g. (package_name, gate-name, semver major, semver minor)
     pub position: Vec2,
 }
