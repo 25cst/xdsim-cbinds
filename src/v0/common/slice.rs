@@ -3,14 +3,14 @@ use core::ffi::*;
 /// A non-resizeable array with length
 #[repr(C)]
 pub struct Slice {
-    first: *const c_void,
-    length: u64,
-    drop: extern "C" fn(*mut c_void, u64),
+    pub first: *const c_void,
+    pub length: u64,
+    pub drop: extern "C" fn(*mut c_void, u64),
 }
 
 /// A non-resizeable, null-terminated string
 #[repr(C)]
 pub struct Str {
-    first: *const c_char,
-    drop: extern "C" fn(*mut c_char),
+    pub first: *const c_char,
+    pub drop: extern "C" fn(*mut c_char),
 }
