@@ -7,8 +7,8 @@ use crate::v0::{
     graphics::Graphic,
 };
 
-type Connection = *const c_void;
-type ConnectionMut = *mut c_void;
+pub type Connection = *const c_void;
+pub type ConnectionMut = *mut c_void;
 
 #[unsafe(no_mangle)]
 pub extern "C" fn conn_draw(conn: Connection, request: *const ConnectionDrawRequest) -> Graphic {
@@ -16,10 +16,11 @@ pub extern "C" fn conn_draw(conn: Connection, request: *const ConnectionDrawRequ
 }
 
 #[unsafe(no_mangle)]
-pub extern "C" fn conn_def() -> *const ConnectionDefinition {
+pub extern "C" fn conn_def(conn: Connection) -> *const ConnectionDefinition {
     unimplemented!()
 }
 
+/// Return NULL if no properties
 #[unsafe(no_mangle)]
 pub extern "C" fn conn_props(conn: ConnectionMut) -> PropertiesMut {
     unimplemented!()
@@ -39,6 +40,11 @@ pub extern "C" fn conn_serialize(conn: Connection) -> Slice {
 /// You must malloc for the struct manually
 #[unsafe(no_mangle)]
 pub extern "C" fn conn_deserialize(bytes: Slice) -> ConnectionMut {
+    unimplemented!()
+}
+
+#[unsafe(no_mangle)]
+pub extern "C" fn conn_default() -> ConnectionMut {
     unimplemented!()
 }
 

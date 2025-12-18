@@ -30,6 +30,7 @@ pub extern "C" fn gate_def(gate: Gate) -> GateDefinition {
     unimplemented!()
 }
 
+/// Return NULL if no properties
 #[unsafe(no_mangle)]
 pub extern "C" fn gate_props(gate: GateMut) -> PropertiesMut {
     unimplemented!()
@@ -42,6 +43,11 @@ pub extern "C" fn gate_serialize(gate: Gate) -> Slice {
 
 #[unsafe(no_mangle)]
 pub extern "C" fn gate_deserialize(bytes: Slice) -> GateMut {
+    unimplemented!()
+}
+
+#[unsafe(no_mangle)]
+pub extern "C" fn gate_default() -> GateMut {
     unimplemented!()
 }
 

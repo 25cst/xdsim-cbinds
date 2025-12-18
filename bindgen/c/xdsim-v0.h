@@ -131,6 +131,10 @@ typedef struct ConnectionDefinition {
 #endif
 
 #if ((defined(XDSIM_CONN) || defined(XDSIM_DATA) || defined(XDSIM_GATE)) && defined(XDSIM_CONN))
+typedef const void *Connection;
+#endif
+
+#if ((defined(XDSIM_CONN) || defined(XDSIM_DATA) || defined(XDSIM_GATE)) && defined(XDSIM_CONN))
 typedef void *ConnectionMut;
 #endif
 
@@ -141,10 +145,6 @@ typedef struct Graphic {
      */
     struct Slice elements;
 } Graphic;
-#endif
-
-#if ((defined(XDSIM_CONN) || defined(XDSIM_DATA) || defined(XDSIM_GATE)) && defined(XDSIM_CONN))
-typedef const void *Connection;
 #endif
 
 #if ((defined(XDSIM_CONN) || defined(XDSIM_DATA) || defined(XDSIM_GATE)) && defined(XDSIM_CONN))
@@ -722,7 +722,11 @@ struct ComponentHeader component_header(void);
 #endif
 
 #if ((defined(XDSIM_CONN) || defined(XDSIM_DATA) || defined(XDSIM_GATE)) && defined(XDSIM_CONN))
-const struct ConnectionDefinition *conn_def(void);
+const struct ConnectionDefinition *conn_def(Connection conn);
+#endif
+
+#if ((defined(XDSIM_CONN) || defined(XDSIM_DATA) || defined(XDSIM_GATE)) && defined(XDSIM_CONN))
+ConnectionMut conn_default(void);
 #endif
 
 #if ((defined(XDSIM_CONN) || defined(XDSIM_DATA) || defined(XDSIM_GATE)) && defined(XDSIM_CONN))
@@ -742,6 +746,9 @@ void conn_drop(ConnectionMut conn);
 #endif
 
 #if ((defined(XDSIM_CONN) || defined(XDSIM_DATA) || defined(XDSIM_GATE)) && defined(XDSIM_CONN))
+/**
+ * Return NULL if no properties
+ */
 PropertiesMut conn_props(ConnectionMut conn);
 #endif
 
@@ -774,6 +781,10 @@ struct GateDefinition gate_def(Gate gate);
 #endif
 
 #if ((defined(XDSIM_CONN) || defined(XDSIM_DATA) || defined(XDSIM_GATE)) && defined(XDSIM_GATE))
+GateMut gate_default(void);
+#endif
+
+#if ((defined(XDSIM_CONN) || defined(XDSIM_DATA) || defined(XDSIM_GATE)) && defined(XDSIM_GATE))
 GateMut gate_deserialize(struct Slice bytes);
 #endif
 
@@ -786,6 +797,9 @@ void gate_drop(GateMut conn);
 #endif
 
 #if ((defined(XDSIM_CONN) || defined(XDSIM_DATA) || defined(XDSIM_GATE)) && defined(XDSIM_GATE))
+/**
+ * Return NULL if no properties
+ */
 PropertiesMut gate_props(GateMut gate);
 #endif
 
