@@ -20,3 +20,6 @@ mod gate_definition;
 pub use gate_definition::*;
 mod data;
 pub use data::*;
+
+mod component_ident;
+pub use component_ident::*;

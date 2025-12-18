@@ -106,6 +106,9 @@ include = [
     "GateDefinition",
     "GateIOEntry",
 
+    # component/component_ident.rs
+    "ComponentIdent",
+
     # graphics/colour.rs
     "Colour",
 
@@ -122,11 +125,6 @@ include = [
     # graphics/style.rs
     "StrokeStyle",
     "FillStyle",
-
-    # package_definition.rs
-    "ComponentHeader",
-    "ComponentType",
-    "ComponentIdent",
 ]
 exclude = []
 # prefix = "CAPI_"

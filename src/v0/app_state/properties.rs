@@ -42,7 +42,7 @@ pub extern "C" fn props_serialize(props: Properties) -> Slice {
 /// You must not store the pointer to the slice, the slice will be dropped
 /// You must malloc for the struct manually
 /// Return NULL if deserialisation failed
-pub extern "C" fn props_deserialize(bytes: Slice) -> Properties {
+pub extern "C" fn props_deserialize(bytes: *const Slice) -> Properties {
     unimplemented!()
 }
 

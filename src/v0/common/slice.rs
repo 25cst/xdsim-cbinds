@@ -3,7 +3,7 @@ use core::ffi::*;
 /// A non-resizeable array with length
 #[repr(C)]
 pub struct Slice {
-    pub first: *const c_void,
+    pub first: *mut c_void,
     pub length: u64,
     pub drop: extern "C" fn(*mut c_void, u64),
 }
@@ -11,6 +11,20 @@ pub struct Slice {
 /// A non-resizeable, null-terminated string
 #[repr(C)]
 pub struct Str {
-    pub first: *const c_char,
+    pub first: *mut c_char,
     pub drop: extern "C" fn(*mut c_char),
+}
+
+#[cfg(feature = "impl")]
+impl Drop for Slice {
+    fn drop(&mut self) {
+        (self.drop)(self.first, self.length);
+    }
+}
+
+#[cfg(feature = "impl")]
+impl Drop for Str {
+    fn drop(&mut self) {
+        (self.drop)(self.first);
+    }
 }

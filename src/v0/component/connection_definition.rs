@@ -1,4 +1,4 @@
-use crate::v0::ComponentIdent;
+use super::ComponentIdent;
 
 /// Information for a Connection
 #[repr(C)]

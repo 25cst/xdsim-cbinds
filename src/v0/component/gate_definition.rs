@@ -1,5 +1,6 @@
+use super::ComponentIdent;
+
 use crate::v0::{
-    ComponentIdent,
     common::{Slice, Str},
     graphics::Vec2,
 };

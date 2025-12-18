@@ -15,7 +15,7 @@ pub extern "C" fn data_serialize(data: Data) -> Slice {
 /// You must malloc for the struct manually
 #[unsafe(no_mangle)]
 #[cfg(feature = "v0-data")]
-pub extern "C" fn data_deserialize(bytes: Slice) -> Data {
+pub extern "C" fn data_deserialize(bytes: *const Slice) -> Data {
     unimplemented!()
 }
 

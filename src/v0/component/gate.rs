@@ -42,7 +42,7 @@ pub extern "C" fn gate_serialize(gate: Gate) -> Slice {
 }
 
 #[unsafe(no_mangle)]
-pub extern "C" fn gate_deserialize(bytes: Slice) -> GateMut {
+pub extern "C" fn gate_deserialize(bytes: *const Slice) -> GateMut {
     unimplemented!()
 }
 

@@ -7,20 +7,6 @@
 #include <stdlib.h>
 
 
-#if (defined(XDSIM_CONN) || defined(XDSIM_DATA) || defined(XDSIM_GATE))
-typedef enum ComponentType {
-#if ((defined(XDSIM_CONN) || defined(XDSIM_DATA) || defined(XDSIM_GATE)) && defined(XDSIM_GATE))
-    ComponentType_Gate,
-#endif
-#if ((defined(XDSIM_CONN) || defined(XDSIM_DATA) || defined(XDSIM_GATE)) && defined(XDSIM_CONN))
-    ComponentType_Connection,
-#endif
-#if ((defined(XDSIM_CONN) || defined(XDSIM_DATA) || defined(XDSIM_GATE)) && defined(XDSIM_DATA))
-    ComponentType_Data,
-#endif
-} ComponentType;
-#endif
-
 #if ((defined(XDSIM_CONN) || defined(XDSIM_DATA) || defined(XDSIM_GATE)) && (defined(XDSIM_GATE) || defined(XDSIM_CONN)))
 typedef enum Direction {
 #if ((defined(XDSIM_CONN) || defined(XDSIM_DATA) || defined(XDSIM_GATE)) && (defined(XDSIM_GATE) || defined(XDSIM_CONN)))
@@ -79,7 +65,7 @@ typedef enum MenuInputBooleanStyle {
  * A non-resizeable, null-terminated string
  */
 typedef struct Str {
-    const char *first;
+    char *first;
     void (*drop)(char*);
 } Str;
 #endif
@@ -92,30 +78,6 @@ typedef struct ComponentIdent {
     uint16_t minor;
     uint16_t patch;
 } ComponentIdent;
-#endif
-
-#if (defined(XDSIM_CONN) || defined(XDSIM_DATA) || defined(XDSIM_GATE))
-/**
- * A non-resizeable array with length
- */
-typedef struct Slice {
-    const void *first;
-    uint64_t length;
-    void (*drop)(void*, uint64_t);
-} Slice;
-#endif
-
-#if (defined(XDSIM_CONN) || defined(XDSIM_DATA) || defined(XDSIM_GATE))
-typedef struct ComponentHeader {
-    struct ComponentIdent ident;
-    enum ComponentType component_type;
-    /**
-     * [ Str ]
-     */
-    struct Slice authors;
-    struct Str description;
-    struct Str homepage;
-} ComponentHeader;
 #endif
 
 #if ((defined(XDSIM_CONN) || defined(XDSIM_DATA) || defined(XDSIM_GATE)) && defined(XDSIM_CONN))
@@ -136,6 +98,17 @@ typedef const void *Connection;
 
 #if ((defined(XDSIM_CONN) || defined(XDSIM_DATA) || defined(XDSIM_GATE)) && defined(XDSIM_CONN))
 typedef void *ConnectionMut;
+#endif
+
+#if (defined(XDSIM_CONN) || defined(XDSIM_DATA) || defined(XDSIM_GATE))
+/**
+ * A non-resizeable array with length
+ */
+typedef struct Slice {
+    void *first;
+    uint64_t length;
+    void (*drop)(void*, uint64_t);
+} Slice;
 #endif
 
 #if ((defined(XDSIM_CONN) || defined(XDSIM_DATA) || defined(XDSIM_GATE)) && (defined(XDSIM_GATE) || defined(XDSIM_CONN)))
@@ -717,10 +690,6 @@ typedef struct Element {
 } Element;
 #endif
 
-#if (defined(XDSIM_CONN) || defined(XDSIM_DATA) || defined(XDSIM_GATE))
-struct ComponentHeader component_header(void);
-#endif
-
 #if ((defined(XDSIM_CONN) || defined(XDSIM_DATA) || defined(XDSIM_GATE)) && defined(XDSIM_CONN))
 const struct ConnectionDefinition *conn_def(Connection conn);
 #endif
@@ -734,7 +703,7 @@ ConnectionMut conn_default(void);
  * You must not store the pointer to the slice, the slice will be dropped
  * You must malloc for the struct manually
  */
-ConnectionMut conn_deserialize(struct Slice bytes);
+ConnectionMut conn_deserialize(const struct Slice *bytes);
 #endif
 
 #if ((defined(XDSIM_CONN) || defined(XDSIM_DATA) || defined(XDSIM_GATE)) && defined(XDSIM_CONN))
@@ -765,7 +734,7 @@ Data data_default(void);
  * You must not store the pointer to the slice, the slice will be dropped
  * You must malloc for the struct manually
  */
-Data data_deserialize(struct Slice bytes);
+Data data_deserialize(const struct Slice *bytes);
 #endif
 
 #if ((defined(XDSIM_CONN) || defined(XDSIM_DATA) || defined(XDSIM_GATE)) && defined(XDSIM_DATA))
@@ -785,7 +754,7 @@ GateMut gate_default(void);
 #endif
 
 #if ((defined(XDSIM_CONN) || defined(XDSIM_DATA) || defined(XDSIM_GATE)) && defined(XDSIM_GATE))
-GateMut gate_deserialize(struct Slice bytes);
+GateMut gate_deserialize(const struct Slice *bytes);
 #endif
 
 #if ((defined(XDSIM_CONN) || defined(XDSIM_DATA) || defined(XDSIM_GATE)) && defined(XDSIM_GATE))
@@ -824,7 +793,7 @@ struct Slice gate_tick(GateMut gate, const struct GateTickRequest *request);
  * You must malloc for the struct manually
  * Return NULL if deserialisation failed
  */
-Properties props_deserialize(struct Slice bytes);
+Properties props_deserialize(const struct Slice *bytes);
 #endif
 
 #if ((defined(XDSIM_CONN) || defined(XDSIM_DATA) || defined(XDSIM_GATE)) && (defined(XDSIM_GATE) || defined(XDSIM_CONN)))
