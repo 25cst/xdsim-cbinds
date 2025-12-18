@@ -34,7 +34,7 @@ after_includes = ""
 
 braces = "SameLine"
 line_length = 100
-tab_width = 2
+tab_width = 4
 documentation = true
 documentation_style = "auto"
 documentation_length = "full"
@@ -226,4 +226,4 @@ extra_bindings = []
 crates = []
 all_features = false
 default_features = false
-features = [ "v0-all" ]
+features = []
