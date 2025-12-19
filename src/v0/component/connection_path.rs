@@ -1,4 +1,4 @@
-use crate::v0::common::Slice;
+use crate::common::Slice;
 
 #[repr(C)]
 pub struct ConnectionSegment {

@@ -1,6 +1,6 @@
-use crate::v0::{
+use crate::{
     common::Slice,
-    graphics::{Vec2, style::*},
+    v0::graphics::{Vec2, style::*},
 };
 
 #[repr(C)]

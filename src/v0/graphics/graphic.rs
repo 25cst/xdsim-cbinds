@@ -1,4 +1,4 @@
-use crate::v0::common::Slice;
+use crate::common::Slice;
 
 // TODO: perhaps use a builder style way to create a graphic, like
 // Graphic::default().line(...).circle(...)

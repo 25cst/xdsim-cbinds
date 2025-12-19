@@ -1,8 +1,8 @@
 use core::ffi::*;
 
-use crate::v0::{
-    app_state::{Menu, MenuInputValue},
-    common::{Slice, Str},
+use crate::{
+    common::*,
+    v0::app_state::{Menu, MenuInputValue},
 };
 
 pub type Properties = *const c_void;

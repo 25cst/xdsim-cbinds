@@ -1,6 +1,6 @@
 use core::ffi::c_void;
 
-use crate::v0::common::Slice;
+use crate::common::Slice;
 
 pub type Data = *const c_void;
 pub type DataMut = *mut c_void;

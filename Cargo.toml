@@ -6,7 +6,7 @@ edition = "2024"
 [dependencies]
 
 [features]
-default = []
+default = ["v0-all", "impl"]
 v0-all = [ "v0-gate", "v0-data", "v0-conn" ]
 v0-gate = []
 v0-conn = []

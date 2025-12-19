@@ -1,10 +1,12 @@
 use core::ffi::*;
 
-use crate::v0::{
-    app_state::PropertiesMut,
+use crate::{
     common::Slice,
-    component::{ConnectionDefinition, ConnectionSegment, Data},
-    graphics::Graphic,
+    v0::{
+        app_state::PropertiesMut,
+        component::{ConnectionDefinition, ConnectionSegment, Data},
+        graphics::Graphic,
+    },
 };
 
 pub type Connection = *const c_void;

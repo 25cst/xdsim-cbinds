@@ -1,4 +1,4 @@
-use crate::v0::common::Str;
+use crate::common::Str;
 
 #[repr(C)]
 pub struct ComponentIdent {

@@ -1,4 +1,4 @@
-use crate::v0::common::Str;
+use crate::common::Str;
 
 /// Enum representing the colour options available for gates
 #[repr(C)]

@@ -60,7 +60,6 @@ typedef enum MenuInputBooleanStyle {
 } MenuInputBooleanStyle;
 #endif
 
-#if (defined(XDSIM_CONN) || defined(XDSIM_DATA) || defined(XDSIM_GATE))
 /**
  * A non-resizeable, null-terminated string
  */
@@ -68,7 +67,6 @@ typedef struct Str {
     char *first;
     void (*drop)(char*);
 } Str;
-#endif
 
 #if (defined(XDSIM_CONN) || defined(XDSIM_DATA) || defined(XDSIM_GATE))
 typedef struct ComponentIdent {
@@ -100,7 +98,6 @@ typedef const void *Connection;
 typedef void *ConnectionMut;
 #endif
 
-#if (defined(XDSIM_CONN) || defined(XDSIM_DATA) || defined(XDSIM_GATE))
 /**
  * A non-resizeable array with length
  */
@@ -109,7 +106,6 @@ typedef struct Slice {
     uint64_t length;
     void (*drop)(void*, uint64_t);
 } Slice;
-#endif
 
 #if ((defined(XDSIM_CONN) || defined(XDSIM_DATA) || defined(XDSIM_GATE)) && (defined(XDSIM_GATE) || defined(XDSIM_CONN)))
 typedef struct Graphic {

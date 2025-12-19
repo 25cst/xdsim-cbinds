@@ -1,10 +1,12 @@
 use core::ffi::*;
 
-use crate::v0::{
-    app_state::PropertiesMut,
+use crate::{
     common::Slice,
-    component::GateDefinition,
-    graphics::{Direction, Graphic, Vec2},
+    v0::{
+        app_state::PropertiesMut,
+        component::GateDefinition,
+        graphics::{Direction, Graphic, Vec2},
+    },
 };
 
 pub type Gate = *const c_void;
