@@ -5,28 +5,15 @@ use crate::common::Slice;
 pub type Data = *const c_void;
 pub type DataMut = *mut c_void;
 
-#[unsafe(no_mangle)]
 #[cfg(feature = "v0-data")]
-pub extern "C" fn data_serialize(data: Data) -> Slice {
-    unimplemented!()
-}
+unsafe extern "C" {
+    pub fn data_serialize(data: Data) -> Slice;
 
-/// You must not store the pointer to the slice, the slice will be dropped
-/// You must malloc for the struct manually
-#[unsafe(no_mangle)]
-#[cfg(feature = "v0-data")]
-pub extern "C" fn data_deserialize(bytes: *const Slice) -> Data {
-    unimplemented!()
-}
+    /// You must not store the pointer to the slice, the slice will be dropped
+    /// You must malloc for the struct manually
+    pub fn data_deserialize(bytes: *const Slice) -> Data;
 
-#[unsafe(no_mangle)]
-#[cfg(feature = "v0-data")]
-pub extern "C" fn data_drop(data: DataMut) {
-    unimplemented!()
-}
+    pub fn data_drop(data: DataMut);
 
-#[unsafe(no_mangle)]
-#[cfg(feature = "v0-data")]
-pub extern "C" fn data_default() -> Data {
-    unimplemented!()
+    pub fn data_default() -> Data;
 }

@@ -12,50 +12,28 @@ use crate::{
 pub type Gate = *const c_void;
 pub type GateMut = *mut c_void;
 
-/// returns [ Data ]
-/// individual Data must be malloced
-/// it will be freed by the program
-/// in this particular case, slice.drop should only drop the slice
-/// and not the individual Data
-#[unsafe(no_mangle)]
-pub extern "C" fn gate_tick(gate: GateMut, request: *const GateTickRequest) -> Slice {
-    unimplemented!()
-}
+unsafe extern "C" {
+    /// returns [ Data ]
+    /// individual Data must be malloced
+    /// it will be freed by the program
+    /// in this particular case, slice.drop should only drop the slice
+    /// and not the individual Data
+    pub fn gate_tick(gate: GateMut, request: *const GateTickRequest) -> Slice;
 
-#[unsafe(no_mangle)]
-pub extern "C" fn gate_draw(gate: Gate, request: *const GateDrawRequest) -> Graphic {
-    unimplemented!()
-}
+    pub fn gate_draw(gate: Gate, request: *const GateDrawRequest) -> Graphic;
 
-#[unsafe(no_mangle)]
-pub extern "C" fn gate_def(gate: Gate) -> GateDefinition {
-    unimplemented!()
-}
+    pub fn gate_def(gate: Gate) -> GateDefinition;
 
-/// Return NULL if no properties
-#[unsafe(no_mangle)]
-pub extern "C" fn gate_props(gate: GateMut) -> PropertiesMut {
-    unimplemented!()
-}
+    /// Return NULL if no properties
+    pub fn gate_props(gate: GateMut) -> PropertiesMut;
 
-#[unsafe(no_mangle)]
-pub extern "C" fn gate_serialize(gate: Gate) -> Slice {
-    unimplemented!()
-}
+    pub fn gate_serialize(gate: Gate) -> Slice;
 
-#[unsafe(no_mangle)]
-pub extern "C" fn gate_deserialize(bytes: *const Slice) -> GateMut {
-    unimplemented!()
-}
+    pub fn gate_deserialize(bytes: *const Slice) -> GateMut;
 
-#[unsafe(no_mangle)]
-pub extern "C" fn gate_default() -> GateMut {
-    unimplemented!()
-}
+    pub fn gate_default() -> GateMut;
 
-#[unsafe(no_mangle)]
-pub extern "C" fn gate_drop(conn: GateMut) {
-    unimplemented!()
+    pub fn gate_drop(conn: GateMut);
 }
 
 /// A single gate tick request

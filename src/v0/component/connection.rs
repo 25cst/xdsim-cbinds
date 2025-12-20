@@ -12,42 +12,22 @@ use crate::{
 pub type Connection = *const c_void;
 pub type ConnectionMut = *mut c_void;
 
-#[unsafe(no_mangle)]
-pub extern "C" fn conn_draw(conn: Connection, request: *const ConnectionDrawRequest) -> Graphic {
-    unimplemented!()
-}
+unsafe extern "C" {
+    pub fn conn_draw(conn: Connection, request: *const ConnectionDrawRequest) -> Graphic;
 
-#[unsafe(no_mangle)]
-pub extern "C" fn conn_def(conn: Connection) -> *const ConnectionDefinition {
-    unimplemented!()
-}
+    pub fn conn_def(conn: Connection) -> *const ConnectionDefinition;
 
-/// Return NULL if no properties
-#[unsafe(no_mangle)]
-pub extern "C" fn conn_props(conn: ConnectionMut) -> PropertiesMut {
-    unimplemented!()
-}
+    pub fn conn_props(conn: ConnectionMut) -> PropertiesMut;
 
-#[unsafe(no_mangle)]
-pub extern "C" fn conn_drop(conn: ConnectionMut) {
-    unimplemented!()
-}
+    pub fn conn_drop(conn: ConnectionMut);
 
-#[unsafe(no_mangle)]
-pub extern "C" fn conn_serialize(conn: Connection) -> Slice {
-    unimplemented!()
-}
+    pub fn conn_serialize(conn: Connection) -> Slice;
 
-/// You must not store the pointer to the slice, the slice will be dropped
-/// You must malloc for the struct manually
-#[unsafe(no_mangle)]
-pub extern "C" fn conn_deserialize(bytes: *const Slice) -> ConnectionMut {
-    unimplemented!()
-}
+    /// You must not store the pointer to the slice, the slice will be dropped
+    /// You must malloc for the struct manually
+    pub fn conn_deserialize(bytes: *const Slice) -> ConnectionMut;
 
-#[unsafe(no_mangle)]
-pub extern "C" fn conn_default() -> ConnectionMut {
-    unimplemented!()
+    pub fn conn_default() -> ConnectionMut;
 }
 
 /// Details of a request to draw a `Connection`

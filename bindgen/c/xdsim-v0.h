@@ -687,11 +687,11 @@ typedef struct Element {
 #endif
 
 #if ((defined(XDSIM_CONN) || defined(XDSIM_DATA) || defined(XDSIM_GATE)) && defined(XDSIM_CONN))
-const struct ConnectionDefinition *conn_def(Connection conn);
+extern const struct ConnectionDefinition *conn_def(Connection conn);
 #endif
 
 #if ((defined(XDSIM_CONN) || defined(XDSIM_DATA) || defined(XDSIM_GATE)) && defined(XDSIM_CONN))
-ConnectionMut conn_default(void);
+extern ConnectionMut conn_default(void);
 #endif
 
 #if ((defined(XDSIM_CONN) || defined(XDSIM_DATA) || defined(XDSIM_GATE)) && defined(XDSIM_CONN))
@@ -699,30 +699,27 @@ ConnectionMut conn_default(void);
  * You must not store the pointer to the slice, the slice will be dropped
  * You must malloc for the struct manually
  */
-ConnectionMut conn_deserialize(const struct Slice *bytes);
+extern ConnectionMut conn_deserialize(const struct Slice *bytes);
 #endif
 
 #if ((defined(XDSIM_CONN) || defined(XDSIM_DATA) || defined(XDSIM_GATE)) && defined(XDSIM_CONN))
-struct Graphic conn_draw(Connection conn, const struct ConnectionDrawRequest *request);
+extern struct Graphic conn_draw(Connection conn, const struct ConnectionDrawRequest *request);
 #endif
 
 #if ((defined(XDSIM_CONN) || defined(XDSIM_DATA) || defined(XDSIM_GATE)) && defined(XDSIM_CONN))
-void conn_drop(ConnectionMut conn);
+extern void conn_drop(ConnectionMut conn);
 #endif
 
 #if ((defined(XDSIM_CONN) || defined(XDSIM_DATA) || defined(XDSIM_GATE)) && defined(XDSIM_CONN))
-/**
- * Return NULL if no properties
- */
-PropertiesMut conn_props(ConnectionMut conn);
+extern PropertiesMut conn_props(ConnectionMut conn);
 #endif
 
 #if ((defined(XDSIM_CONN) || defined(XDSIM_DATA) || defined(XDSIM_GATE)) && defined(XDSIM_CONN))
-struct Slice conn_serialize(Connection conn);
+extern struct Slice conn_serialize(Connection conn);
 #endif
 
 #if ((defined(XDSIM_CONN) || defined(XDSIM_DATA) || defined(XDSIM_GATE)) && defined(XDSIM_DATA))
-Data data_default(void);
+extern Data data_default(void);
 #endif
 
 #if ((defined(XDSIM_CONN) || defined(XDSIM_DATA) || defined(XDSIM_GATE)) && defined(XDSIM_DATA))
@@ -730,46 +727,46 @@ Data data_default(void);
  * You must not store the pointer to the slice, the slice will be dropped
  * You must malloc for the struct manually
  */
-Data data_deserialize(const struct Slice *bytes);
+extern Data data_deserialize(const struct Slice *bytes);
 #endif
 
 #if ((defined(XDSIM_CONN) || defined(XDSIM_DATA) || defined(XDSIM_GATE)) && defined(XDSIM_DATA))
-void data_drop(DataMut data);
+extern void data_drop(DataMut data);
 #endif
 
 #if ((defined(XDSIM_CONN) || defined(XDSIM_DATA) || defined(XDSIM_GATE)) && defined(XDSIM_DATA))
-struct Slice data_serialize(Data data);
+extern struct Slice data_serialize(Data data);
 #endif
 
 #if ((defined(XDSIM_CONN) || defined(XDSIM_DATA) || defined(XDSIM_GATE)) && defined(XDSIM_GATE))
-struct GateDefinition gate_def(Gate gate);
+extern struct GateDefinition gate_def(Gate gate);
 #endif
 
 #if ((defined(XDSIM_CONN) || defined(XDSIM_DATA) || defined(XDSIM_GATE)) && defined(XDSIM_GATE))
-GateMut gate_default(void);
+extern GateMut gate_default(void);
 #endif
 
 #if ((defined(XDSIM_CONN) || defined(XDSIM_DATA) || defined(XDSIM_GATE)) && defined(XDSIM_GATE))
-GateMut gate_deserialize(const struct Slice *bytes);
+extern GateMut gate_deserialize(const struct Slice *bytes);
 #endif
 
 #if ((defined(XDSIM_CONN) || defined(XDSIM_DATA) || defined(XDSIM_GATE)) && defined(XDSIM_GATE))
-struct Graphic gate_draw(Gate gate, const struct GateDrawRequest *request);
+extern struct Graphic gate_draw(Gate gate, const struct GateDrawRequest *request);
 #endif
 
 #if ((defined(XDSIM_CONN) || defined(XDSIM_DATA) || defined(XDSIM_GATE)) && defined(XDSIM_GATE))
-void gate_drop(GateMut conn);
+extern void gate_drop(GateMut conn);
 #endif
 
 #if ((defined(XDSIM_CONN) || defined(XDSIM_DATA) || defined(XDSIM_GATE)) && defined(XDSIM_GATE))
 /**
  * Return NULL if no properties
  */
-PropertiesMut gate_props(GateMut gate);
+extern PropertiesMut gate_props(GateMut gate);
 #endif
 
 #if ((defined(XDSIM_CONN) || defined(XDSIM_DATA) || defined(XDSIM_GATE)) && defined(XDSIM_GATE))
-struct Slice gate_serialize(Gate gate);
+extern struct Slice gate_serialize(Gate gate);
 #endif
 
 #if ((defined(XDSIM_CONN) || defined(XDSIM_DATA) || defined(XDSIM_GATE)) && defined(XDSIM_GATE))
@@ -780,7 +777,7 @@ struct Slice gate_serialize(Gate gate);
  * in this particular case, slice.drop should only drop the slice
  * and not the individual Data
  */
-struct Slice gate_tick(GateMut gate, const struct GateTickRequest *request);
+extern struct Slice gate_tick(GateMut gate, const struct GateTickRequest *request);
 #endif
 
 #if ((defined(XDSIM_CONN) || defined(XDSIM_DATA) || defined(XDSIM_GATE)) && (defined(XDSIM_GATE) || defined(XDSIM_CONN)))
