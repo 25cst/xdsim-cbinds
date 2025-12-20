@@ -18,9 +18,12 @@ unsafe extern "C" {
     /// it will be freed by the program
     /// in this particular case, slice.drop should only drop the slice
     /// and not the individual Data
-    pub fn gate_tick(gate: GateMut, request: *const GateTickRequest) -> Slice;
+    /// inputs is an array of Data
+    pub fn gate_tick(gate: GateMut, inputs: Slice) -> Slice;
 
-    pub fn gate_draw(gate: Gate, request: *const GateDrawRequest) -> Graphic;
+    /// direction: one of the four the gate is facing (rotation)
+    /// dimension: the size of the bounding box previously provided
+    pub fn gate_draw(gate: Gate, direction: Direction, bounding_box: Vec2) -> Graphic;
 
     pub fn gate_def(gate: Gate) -> GateDefinition;
 
@@ -34,21 +37,4 @@ unsafe extern "C" {
     pub fn gate_default() -> GateMut;
 
     pub fn gate_drop(conn: GateMut);
-}
-
-/// A single gate tick request
-#[repr(C)]
-pub struct GateTickRequest {
-    /// Inputs to the gate
-    /// [ *const Data ]
-    pub inputs: Slice,
-}
-
-/// A single gate draw request
-#[repr(C)]
-pub struct GateDrawRequest {
-    /// One of the four the gate is facing (rotation)
-    pub direction: Direction,
-    /// The size of the bounding box previously provided
-    pub dimension: Vec2,
 }

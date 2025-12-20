@@ -13,7 +13,7 @@ pub type Connection = *const c_void;
 pub type ConnectionMut = *mut c_void;
 
 unsafe extern "C" {
-    pub fn conn_draw(conn: Connection, request: *const ConnectionDrawRequest) -> Graphic;
+    pub fn conn_draw(conn: Connection, path: *const ConnectionSegment, data: Data) -> Graphic;
 
     pub fn conn_def(conn: Connection) -> *const ConnectionDefinition;
 
@@ -28,13 +28,4 @@ unsafe extern "C" {
     pub fn conn_deserialize(bytes: *const Slice) -> ConnectionMut;
 
     pub fn conn_default() -> ConnectionMut;
-}
-
-/// Details of a request to draw a `Connection`
-#[repr(C)]
-pub struct ConnectionDrawRequest {
-    /// Path the connection takes
-    pub path: *const ConnectionSegment,
-    /// Current value in the connection
-    pub data: Data,
 }

@@ -145,22 +145,6 @@ typedef struct ConnectionSegment {
 typedef const void *Data;
 #endif
 
-#if ((defined(XDSIM_CONN) || defined(XDSIM_DATA) || defined(XDSIM_GATE)) && defined(XDSIM_CONN))
-/**
- * Details of a request to draw a `Connection`
- */
-typedef struct ConnectionDrawRequest {
-    /**
-     * Path the connection takes
-     */
-    const struct ConnectionSegment *path;
-    /**
-     * Current value in the connection
-     */
-    Data data;
-} ConnectionDrawRequest;
-#endif
-
 #if ((defined(XDSIM_CONN) || defined(XDSIM_DATA) || defined(XDSIM_GATE)) && (defined(XDSIM_GATE) || defined(XDSIM_CONN)))
 typedef void *PropertiesMut;
 #endif
@@ -207,35 +191,6 @@ typedef const void *Gate;
 
 #if ((defined(XDSIM_CONN) || defined(XDSIM_DATA) || defined(XDSIM_GATE)) && defined(XDSIM_GATE))
 typedef void *GateMut;
-#endif
-
-#if ((defined(XDSIM_CONN) || defined(XDSIM_DATA) || defined(XDSIM_GATE)) && defined(XDSIM_GATE))
-/**
- * A single gate draw request
- */
-typedef struct GateDrawRequest {
-    /**
-     * One of the four the gate is facing (rotation)
-     */
-    enum Direction direction;
-    /**
-     * The size of the bounding box previously provided
-     */
-    struct Vec2 dimension;
-} GateDrawRequest;
-#endif
-
-#if ((defined(XDSIM_CONN) || defined(XDSIM_DATA) || defined(XDSIM_GATE)) && defined(XDSIM_GATE))
-/**
- * A single gate tick request
- */
-typedef struct GateTickRequest {
-    /**
-     * Inputs to the gate
-     * [ *const Data ]
-     */
-    struct Slice inputs;
-} GateTickRequest;
 #endif
 
 #if ((defined(XDSIM_CONN) || defined(XDSIM_DATA) || defined(XDSIM_GATE)) && (defined(XDSIM_GATE) || defined(XDSIM_CONN)))
@@ -703,7 +658,7 @@ extern ConnectionMut conn_deserialize(const struct Slice *bytes);
 #endif
 
 #if ((defined(XDSIM_CONN) || defined(XDSIM_DATA) || defined(XDSIM_GATE)) && defined(XDSIM_CONN))
-extern struct Graphic conn_draw(Connection conn, const struct ConnectionDrawRequest *request);
+extern struct Graphic conn_draw(Connection conn, const struct ConnectionSegment *path, Data data);
 #endif
 
 #if ((defined(XDSIM_CONN) || defined(XDSIM_DATA) || defined(XDSIM_GATE)) && defined(XDSIM_CONN))
@@ -751,7 +706,11 @@ extern GateMut gate_deserialize(const struct Slice *bytes);
 #endif
 
 #if ((defined(XDSIM_CONN) || defined(XDSIM_DATA) || defined(XDSIM_GATE)) && defined(XDSIM_GATE))
-extern struct Graphic gate_draw(Gate gate, const struct GateDrawRequest *request);
+/**
+ * direction: one of the four the gate is facing (rotation)
+ * dimension: the size of the bounding box previously provided
+ */
+extern struct Graphic gate_draw(Gate gate, enum Direction direction, struct Vec2 bounding_box);
 #endif
 
 #if ((defined(XDSIM_CONN) || defined(XDSIM_DATA) || defined(XDSIM_GATE)) && defined(XDSIM_GATE))
@@ -776,8 +735,9 @@ extern struct Slice gate_serialize(Gate gate);
  * it will be freed by the program
  * in this particular case, slice.drop should only drop the slice
  * and not the individual Data
+ * inputs is an array of Data
  */
-extern struct Slice gate_tick(GateMut gate, const struct GateTickRequest *request);
+extern struct Slice gate_tick(GateMut gate, struct Slice inputs);
 #endif
 
 #if ((defined(XDSIM_CONN) || defined(XDSIM_DATA) || defined(XDSIM_GATE)) && (defined(XDSIM_GATE) || defined(XDSIM_CONN)))
