@@ -642,7 +642,7 @@ typedef struct Element {
 #endif
 
 #if ((defined(XDSIM_CONN) || defined(XDSIM_DATA) || defined(XDSIM_GATE)) && defined(XDSIM_CONN))
-extern const struct ConnectionDefinition *conn_def(Connection conn);
+extern struct ConnectionDefinition conn_def(Connection conn);
 #endif
 
 #if ((defined(XDSIM_CONN) || defined(XDSIM_DATA) || defined(XDSIM_GATE)) && defined(XDSIM_CONN))

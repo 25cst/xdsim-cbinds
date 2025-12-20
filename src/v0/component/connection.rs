@@ -15,7 +15,7 @@ pub type ConnectionMut = *mut c_void;
 unsafe extern "C" {
     pub fn conn_draw(conn: Connection, path: *const ConnectionSegment, data: Data) -> Graphic;
 
-    pub fn conn_def(conn: Connection) -> *const ConnectionDefinition;
+    pub fn conn_def(conn: Connection) -> ConnectionDefinition;
 
     pub fn conn_props(conn: ConnectionMut) -> PropertiesMut;
 
