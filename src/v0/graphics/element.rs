@@ -1,7 +1,4 @@
-use crate::{
-    common::Slice,
-    v0::graphics::{Vec2, style::*},
-};
+use crate::{common::*, v0::graphics::style::*};
 
 #[repr(C)]
 pub enum Element {

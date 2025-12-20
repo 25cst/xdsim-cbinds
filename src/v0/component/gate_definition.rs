@@ -1,6 +1,6 @@
 use super::ComponentIdent;
 
-use crate::{common::*, v0::graphics::Vec2};
+use crate::common::*;
 
 /// TODO: this will need to have a stable byte structure
 /// probably need to tag repr(C) or something
