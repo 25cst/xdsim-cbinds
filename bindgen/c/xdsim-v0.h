@@ -61,10 +61,8 @@ typedef struct Str {
 #if (defined(XDSIM_CONN) || defined(XDSIM_DATA) || defined(XDSIM_GATE))
 typedef struct ComponentIdent {
     struct Str package;
+    struct Str version;
     struct Str component;
-    uint16_t major;
-    uint16_t minor;
-    uint16_t patch;
 } ComponentIdent;
 #endif
 
@@ -440,16 +438,30 @@ typedef struct MenuItem {
 
 #if ((defined(XDSIM_CONN) || defined(XDSIM_DATA) || defined(XDSIM_GATE)) && defined(XDSIM_GATE))
 /**
- * Representing a single input or output connection that the gate take.
+ * Representing a single input connection that the gate take.
  * - name: the unique name of the input/output
  * - data_type: the type name of the input/output
  * - position: a point that is on the bounding box
  */
-typedef struct GateIOEntry {
+typedef struct GateInputEntry {
+    struct Str name;
+    struct ComponentIdent data_type_req;
+    struct Vec2 position;
+} GateInputEntry;
+#endif
+
+#if ((defined(XDSIM_CONN) || defined(XDSIM_DATA) || defined(XDSIM_GATE)) && defined(XDSIM_GATE))
+/**
+ * Representing a single output connection that the gate take.
+ * - name: the unique name of the input/output
+ * - data_type: the type name of the input/output
+ * - position: a point that is on the bounding box
+ */
+typedef struct GateOutputEntry {
     struct Str name;
     struct ComponentIdent data_type;
     struct Vec2 position;
-} GateIOEntry;
+} GateOutputEntry;
 #endif
 
 #if ((defined(XDSIM_CONN) || defined(XDSIM_DATA) || defined(XDSIM_GATE)) && (defined(XDSIM_GATE) || defined(XDSIM_CONN)))

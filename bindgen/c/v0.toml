@@ -104,7 +104,8 @@ include = [
 
     # component/gate_definition.rs
     "GateDefinition",
-    "GateIOEntry",
+    "GateInputEntry",
+    "GateOutputEntry",
 
     # component/component_ident.rs
     "ComponentIdent",

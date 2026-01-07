@@ -19,12 +19,24 @@ pub struct GateDefinition {
     pub bounding_box: Vec2,
 }
 
-/// Representing a single input or output connection that the gate take.
+/// Representing a single input connection that the gate take.
 /// - name: the unique name of the input/output
 /// - data_type: the type name of the input/output
 /// - position: a point that is on the bounding box
 #[repr(C)]
-pub struct GateIOEntry {
+pub struct GateInputEntry {
+    pub name: Str,
+    pub data_type_req: ComponentIdent, // e.g. (package_name, gate-name, semver major, semver minor)
+    pub position: Vec2,
+}
+
+// they are the same layout for now, but can change in the future
+/// Representing a single output connection that the gate take.
+/// - name: the unique name of the input/output
+/// - data_type: the type name of the input/output
+/// - position: a point that is on the bounding box
+#[repr(C)]
+pub struct GateOutputEntry {
     pub name: Str,
     pub data_type: ComponentIdent, // e.g. (package_name, gate-name, semver major, semver minor)
     pub position: Vec2,
