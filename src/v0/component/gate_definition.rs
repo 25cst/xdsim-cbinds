@@ -8,10 +8,10 @@ use crate::common::*;
 #[repr(C)]
 pub struct GateDefinition {
     /// The ordered input that the gate takes
-    /// [ GateIOEntry ]
+    /// [ GateInputEntry ]
     pub inputs: Slice,
     /// The ordered output that the gate produces
-    /// [ GateIOEntry ]
+    /// [ GateOutputEntry ]
     pub outputs: Slice,
 
     /// The visual bounding box (dimension) of the gate

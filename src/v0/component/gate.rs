@@ -32,5 +32,5 @@ unsafe extern "C" {
 
     pub fn gate_default() -> GateMut;
 
-    pub fn gate_drop(conn: GateMut);
+    pub fn gate_drop(gate: GateMut);
 }
