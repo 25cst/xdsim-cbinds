@@ -55,7 +55,7 @@ typedef enum MenuInputBooleanStyle {
  */
 typedef struct Str {
     char *first;
-    void (*drop)(char*);
+    void (*drop)(char *length);
 } Str;
 
 #if (defined(XDSIM_CONN) || defined(XDSIM_DATA) || defined(XDSIM_GATE))
@@ -92,7 +92,8 @@ typedef void *ConnectionMut;
 typedef struct Slice {
     void *first;
     uint64_t length;
-    void (*drop)(void*, uint64_t);
+    uint64_t item_size;
+    void (*drop)(void *first, uint64_t item_size, uint64_t length);
 } Slice;
 
 #if ((defined(XDSIM_CONN) || defined(XDSIM_DATA) || defined(XDSIM_GATE)) && (defined(XDSIM_GATE) || defined(XDSIM_CONN)))
@@ -155,12 +156,12 @@ typedef struct Vec2 {
 typedef struct GateDefinition {
     /**
      * The ordered input that the gate takes
-     * [ GateIOEntry ]
+     * [ GateInputEntry ]
      */
     struct Slice inputs;
     /**
      * The ordered output that the gate produces
-     * [ GateIOEntry ]
+     * [ GateOutputEntry ]
      */
     struct Slice outputs;
     /**
@@ -714,7 +715,7 @@ extern struct Graphic gate_draw(Gate gate, enum Direction direction, struct Vec2
 #endif
 
 #if ((defined(XDSIM_CONN) || defined(XDSIM_DATA) || defined(XDSIM_GATE)) && defined(XDSIM_GATE))
-extern void gate_drop(GateMut conn);
+extern void gate_drop(GateMut gate);
 #endif
 
 #if ((defined(XDSIM_CONN) || defined(XDSIM_DATA) || defined(XDSIM_GATE)) && defined(XDSIM_GATE))
