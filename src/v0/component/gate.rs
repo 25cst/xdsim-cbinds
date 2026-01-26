@@ -15,7 +15,7 @@ unsafe extern "C" {
     /// in this particular case, slice.drop should only drop the slice
     /// and not the individual Data
     /// inputs is an array of Data
-    pub fn gate_tick(gate: GateMut, inputs: Slice) -> Slice;
+    pub fn gate_tick(gate: GateMut, inputs: *const Slice) -> Slice;
 
     /// direction: one of the four the gate is facing (rotation)
     /// dimension: the size of the bounding box previously provided

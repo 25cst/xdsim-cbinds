@@ -55,7 +55,7 @@ typedef enum MenuInputBooleanStyle {
  */
 typedef struct Str {
     char *first;
-    void (*drop)(char *length);
+    void (*drop)(char *first);
 } Str;
 
 #if (defined(XDSIM_CONN) || defined(XDSIM_DATA) || defined(XDSIM_GATE))
@@ -738,7 +738,7 @@ extern struct Slice gate_serialize(Gate gate);
  * and not the individual Data
  * inputs is an array of Data
  */
-extern struct Slice gate_tick(GateMut gate, struct Slice inputs);
+extern struct Slice gate_tick(GateMut gate, const struct Slice *inputs);
 #endif
 
 #if ((defined(XDSIM_CONN) || defined(XDSIM_DATA) || defined(XDSIM_GATE)) && (defined(XDSIM_GATE) || defined(XDSIM_CONN)))
