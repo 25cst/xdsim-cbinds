@@ -81,17 +81,17 @@ include = [
     "Slice",
     "Str",
 
-    # component/connection.rs
-    "Connection",
-    "ConnectionMut",
-    "ConnectionDrawRequest",
+    # component/conn.rs
+    "Conn",
+    "ConnMut",
+    "ConnDrawRequest",
 
-    # component/connection_definition.rs
-    "ConnectionDrawRequest",
+    # component/conn_definition.rs
+    "ConnDrawRequest",
 
-    # component/connection_path.rs
-    "ConnectionSegment",
-    "ConnectionJunction",
+    # component/conn_path.rs
+    "ConnSegment",
+    "ConnJunction",
 
     # component/data.rs
     "Data",

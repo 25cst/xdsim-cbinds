@@ -1,15 +1,15 @@
 #[cfg(feature = "v0-conn")]
-mod connection;
+mod conn;
 #[cfg(feature = "v0-conn")]
-pub use connection::*;
+pub use conn::*;
 #[cfg(feature = "v0-conn")]
-mod connection_definition;
+mod conn_definition;
 #[cfg(feature = "v0-conn")]
-pub use connection_definition::*;
+pub use conn_definition::*;
 #[cfg(feature = "v0-conn")]
-mod connection_path;
+mod conn_path;
 #[cfg(feature = "v0-conn")]
-pub use connection_path::*;
+pub use conn_path::*;
 #[cfg(feature = "v0-gate")]
 mod gate;
 #[cfg(feature = "v0-gate")]

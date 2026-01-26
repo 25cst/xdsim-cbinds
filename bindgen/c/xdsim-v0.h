@@ -68,22 +68,22 @@ typedef struct ComponentIdent {
 
 #if ((defined(XDSIM_CONN) || defined(XDSIM_DATA) || defined(XDSIM_GATE)) && defined(XDSIM_CONN))
 /**
- * Information for a Connection
+ * Information for a Conn
  */
-typedef struct ConnectionDefinition {
+typedef struct ConnDefinition {
     /**
-     * Data type the connection carries
+     * Data type the conn carries
      */
     struct ComponentIdent data_type;
-} ConnectionDefinition;
+} ConnDefinition;
 #endif
 
 #if ((defined(XDSIM_CONN) || defined(XDSIM_DATA) || defined(XDSIM_GATE)) && defined(XDSIM_CONN))
-typedef const void *Connection;
+typedef const void *Conn;
 #endif
 
 #if ((defined(XDSIM_CONN) || defined(XDSIM_DATA) || defined(XDSIM_GATE)) && defined(XDSIM_CONN))
-typedef void *ConnectionMut;
+typedef void *ConnMut;
 #endif
 
 /**
@@ -109,16 +109,16 @@ typedef struct Graphic {
 /**
  * if is NONE, then write NULL
  */
-typedef struct ConnectionJunction {
-    const struct ConnectionSegment *up;
-    const struct ConnectionSegment *right;
-    const struct ConnectionSegment *down;
-    const struct ConnectionSegment *left;
-} ConnectionJunction;
+typedef struct ConnJunction {
+    const struct ConnSegment *up;
+    const struct ConnSegment *right;
+    const struct ConnSegment *down;
+    const struct ConnSegment *left;
+} ConnJunction;
 #endif
 
 #if ((defined(XDSIM_CONN) || defined(XDSIM_DATA) || defined(XDSIM_GATE)) && defined(XDSIM_CONN))
-typedef struct ConnectionSegment {
+typedef struct ConnSegment {
     /**
      * [ Vec2 ]
      */
@@ -126,8 +126,8 @@ typedef struct ConnectionSegment {
     /**
      * if is NONE, then write NULL
      */
-    const struct ConnectionJunction *next;
-} ConnectionSegment;
+    const struct ConnJunction *next;
+} ConnSegment;
 #endif
 
 #if (defined(XDSIM_CONN) || defined(XDSIM_DATA) || defined(XDSIM_GATE))
@@ -643,11 +643,11 @@ typedef struct Element {
 #endif
 
 #if ((defined(XDSIM_CONN) || defined(XDSIM_DATA) || defined(XDSIM_GATE)) && defined(XDSIM_CONN))
-extern struct ConnectionDefinition conn_def(Connection conn);
+extern struct ConnDefinition conn_def(Conn conn);
 #endif
 
 #if ((defined(XDSIM_CONN) || defined(XDSIM_DATA) || defined(XDSIM_GATE)) && defined(XDSIM_CONN))
-extern ConnectionMut conn_default(void);
+extern ConnMut conn_default(void);
 #endif
 
 #if ((defined(XDSIM_CONN) || defined(XDSIM_DATA) || defined(XDSIM_GATE)) && defined(XDSIM_CONN))
@@ -655,23 +655,23 @@ extern ConnectionMut conn_default(void);
  * You must not store the pointer to the slice, the slice will be dropped
  * You must malloc for the struct manually
  */
-extern ConnectionMut conn_deserialize(const struct Slice *bytes);
+extern ConnMut conn_deserialize(const struct Slice *bytes);
 #endif
 
 #if ((defined(XDSIM_CONN) || defined(XDSIM_DATA) || defined(XDSIM_GATE)) && defined(XDSIM_CONN))
-extern struct Graphic conn_draw(Connection conn, const struct ConnectionSegment *path, Data data);
+extern struct Graphic conn_draw(Conn conn, const struct ConnSegment *path, Data data);
 #endif
 
 #if ((defined(XDSIM_CONN) || defined(XDSIM_DATA) || defined(XDSIM_GATE)) && defined(XDSIM_CONN))
-extern void conn_drop(ConnectionMut conn);
+extern void conn_drop(ConnMut conn);
 #endif
 
 #if ((defined(XDSIM_CONN) || defined(XDSIM_DATA) || defined(XDSIM_GATE)) && defined(XDSIM_CONN))
-extern PropertiesMut conn_props(ConnectionMut conn);
+extern PropertiesMut conn_props(ConnMut conn);
 #endif
 
 #if ((defined(XDSIM_CONN) || defined(XDSIM_DATA) || defined(XDSIM_GATE)) && defined(XDSIM_CONN))
-extern struct Slice conn_serialize(Connection conn);
+extern struct Slice conn_serialize(Conn conn);
 #endif
 
 #if ((defined(XDSIM_CONN) || defined(XDSIM_DATA) || defined(XDSIM_GATE)) && defined(XDSIM_DATA))
