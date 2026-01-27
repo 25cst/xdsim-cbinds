@@ -1,8 +1,8 @@
 #[repr(C)]
 #[cfg_attr(feature = "impl", derive(Clone, Copy))]
 pub struct Vec2 {
-    pub x: f32,
-    pub y: f32,
+    pub x: f64,
+    pub y: f64,
 }
 
 #[repr(C)]

@@ -143,8 +143,8 @@ typedef void *DataMut;
 #endif
 
 typedef struct Vec2 {
-    float x;
-    float y;
+    double x;
+    double y;
 } Vec2;
 
 #if ((defined(XDSIM_CONN) || defined(XDSIM_DATA) || defined(XDSIM_GATE)) && defined(XDSIM_GATE))
