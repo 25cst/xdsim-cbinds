@@ -442,12 +442,14 @@ typedef struct MenuItem {
  * Representing a single input connection that the gate take.
  * - name: the unique name of the input/output
  * - data_type: the type name of the input/output
- * - position: a point that is on the bounding box
+ * - direction: the side of the bounding box the connection is on
+ * - position: length of the side of the bounding box to the left (counter clockwise direction) of the socket
  */
 typedef struct GateInputEntry {
     struct Str name;
     struct ComponentIdent data_type_req;
-    struct Vec2 position;
+    enum Direction direction;
+    double position;
 } GateInputEntry;
 #endif
 
@@ -456,12 +458,14 @@ typedef struct GateInputEntry {
  * Representing a single output connection that the gate take.
  * - name: the unique name of the input/output
  * - data_type: the type name of the input/output
- * - position: a point that is on the bounding box
+ * - direction: the side of the bounding box the connection is on
+ * - position: length of the side of the bounding box to the left (counter clockwise direction) of the socket
  */
 typedef struct GateOutputEntry {
     struct Str name;
     struct ComponentIdent data_type;
-    struct Vec2 position;
+    enum Direction direction;
+    double position;
 } GateOutputEntry;
 #endif
 
