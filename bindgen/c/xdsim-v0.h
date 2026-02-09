@@ -143,8 +143,8 @@ typedef void *DataMut;
 #endif
 
 typedef struct Vec2 {
-    double x;
-    double y;
+    int64_t x;
+    int64_t y;
 } Vec2;
 
 #if ((defined(XDSIM_CONN) || defined(XDSIM_DATA) || defined(XDSIM_GATE)) && defined(XDSIM_GATE))
@@ -448,8 +448,7 @@ typedef struct MenuItem {
 typedef struct GateInputEntry {
     struct Str name;
     struct ComponentIdent data_type_req;
-    enum Direction direction;
-    double position;
+    struct Vec2 position;
 } GateInputEntry;
 #endif
 
@@ -464,8 +463,7 @@ typedef struct GateInputEntry {
 typedef struct GateOutputEntry {
     struct Str name;
     struct ComponentIdent data_type;
-    enum Direction direction;
-    double position;
+    struct Vec2 position;
 } GateOutputEntry;
 #endif
 

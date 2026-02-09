@@ -28,8 +28,7 @@ pub struct GateDefinition {
 pub struct GateInputEntry {
     pub name: Str,
     pub data_type_req: ComponentIdent, // e.g. (package_name, gate-name, semver major, semver minor)
-    pub direction: Direction,
-    pub position: f64,
+    pub position: Vec2,
 }
 
 // they are the same layout for now, but can change in the future
@@ -42,6 +41,5 @@ pub struct GateInputEntry {
 pub struct GateOutputEntry {
     pub name: Str,
     pub data_type: ComponentIdent, // e.g. (package_name, gate-name, semver major, semver minor)
-    pub direction: Direction,
-    pub position: f64,
+    pub position: Vec2,
 }
