@@ -158,12 +158,12 @@ typedef struct GateDefinition {
      * The ordered input that the gate takes
      * [ GateConsumerEntry ]
      */
-    struct Slice consumer;
+    struct Slice consumers;
     /**
      * The ordered output that the gate produces
      * [ GateProducerEntry ]
      */
-    struct Slice outputs;
+    struct Slice producers;
     /**
      * The visual bounding box (dimension) of the gate
      * The bottom left corner is (0, 0), top right corner is (width, height)

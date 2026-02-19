@@ -9,10 +9,10 @@ use crate::common::*;
 pub struct GateDefinition {
     /// The ordered input that the gate takes
     /// [ GateConsumerEntry ]
-    pub consumer: Slice,
+    pub consumers: Slice,
     /// The ordered output that the gate produces
     /// [ GateProducerEntry ]
-    pub outputs: Slice,
+    pub producers: Slice,
 
     /// The visual bounding box (dimension) of the gate
     /// The bottom left corner is (0, 0), top right corner is (width, height)
