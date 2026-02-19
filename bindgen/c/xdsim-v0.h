@@ -156,12 +156,12 @@ typedef struct Vec2 {
 typedef struct GateDefinition {
     /**
      * The ordered input that the gate takes
-     * [ GateInputEntry ]
+     * [ GateConsumerEntry ]
      */
-    struct Slice inputs;
+    struct Slice consumer;
     /**
      * The ordered output that the gate produces
-     * [ GateOutputEntry ]
+     * [ GateProducerEntry ]
      */
     struct Slice outputs;
     /**
@@ -445,11 +445,11 @@ typedef struct MenuItem {
  * - direction: the side of the bounding box the connection is on
  * - position: length of the side of the bounding box to the left (counter clockwise direction) of the socket
  */
-typedef struct GateInputEntry {
+typedef struct GateConsumerEntry {
     struct Str name;
     struct ComponentIdent data_type_req;
     struct Vec2 position;
-} GateInputEntry;
+} GateConsumerEntry;
 #endif
 
 #if ((defined(XDSIM_CONN) || defined(XDSIM_DATA) || defined(XDSIM_GATE)) && defined(XDSIM_GATE))
@@ -460,11 +460,11 @@ typedef struct GateInputEntry {
  * - direction: the side of the bounding box the connection is on
  * - position: length of the side of the bounding box to the left (counter clockwise direction) of the socket
  */
-typedef struct GateOutputEntry {
+typedef struct GateProducerEntry {
     struct Str name;
     struct ComponentIdent data_type;
     struct Vec2 position;
-} GateOutputEntry;
+} GateProducerEntry;
 #endif
 
 #if ((defined(XDSIM_CONN) || defined(XDSIM_DATA) || defined(XDSIM_GATE)) && (defined(XDSIM_GATE) || defined(XDSIM_CONN)))

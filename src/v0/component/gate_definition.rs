@@ -8,10 +8,10 @@ use crate::common::*;
 #[repr(C)]
 pub struct GateDefinition {
     /// The ordered input that the gate takes
-    /// [ GateInputEntry ]
-    pub inputs: Slice,
+    /// [ GateConsumerEntry ]
+    pub consumer: Slice,
     /// The ordered output that the gate produces
-    /// [ GateOutputEntry ]
+    /// [ GateProducerEntry ]
     pub outputs: Slice,
 
     /// The visual bounding box (dimension) of the gate
@@ -25,7 +25,7 @@ pub struct GateDefinition {
 /// - direction: the side of the bounding box the connection is on
 /// - position: length of the side of the bounding box to the left (counter clockwise direction) of the socket
 #[repr(C)]
-pub struct GateInputEntry {
+pub struct GateConsumerEntry {
     pub name: Str,
     pub data_type_req: ComponentIdent, // e.g. (package_name, gate-name, semver major, semver minor)
     pub position: Vec2,
@@ -38,7 +38,7 @@ pub struct GateInputEntry {
 /// - direction: the side of the bounding box the connection is on
 /// - position: length of the side of the bounding box to the left (counter clockwise direction) of the socket
 #[repr(C)]
-pub struct GateOutputEntry {
+pub struct GateProducerEntry {
     pub name: Str,
     pub data_type: ComponentIdent, // e.g. (package_name, gate-name, semver major, semver minor)
     pub position: Vec2,
