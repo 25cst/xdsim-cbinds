@@ -7,13 +7,6 @@
 #include <stdlib.h>
 
 
-typedef enum Direction {
-    Direction_Right,
-    Direction_Up,
-    Direction_Left,
-    Direction_Down,
-} Direction;
-
 #if ((defined(XDSIM_CONN) || defined(XDSIM_DATA) || defined(XDSIM_GATE)) && (defined(XDSIM_GATE) || defined(XDSIM_CONN)))
 typedef enum MenuInputIntegerStyle {
 #if ((defined(XDSIM_CONN) || defined(XDSIM_DATA) || defined(XDSIM_GATE)) && (defined(XDSIM_GATE) || defined(XDSIM_CONN)))
@@ -143,8 +136,8 @@ typedef void *DataMut;
 #endif
 
 typedef struct Vec2 {
-    int64_t x;
-    int64_t y;
+    double x;
+    double y;
 } Vec2;
 
 #if ((defined(XDSIM_CONN) || defined(XDSIM_DATA) || defined(XDSIM_GATE)) && defined(XDSIM_GATE))
@@ -179,6 +172,10 @@ typedef const void *Gate;
 #if ((defined(XDSIM_CONN) || defined(XDSIM_DATA) || defined(XDSIM_GATE)) && defined(XDSIM_GATE))
 typedef void *GateMut;
 #endif
+
+typedef struct Rotation {
+    double _0;
+} Rotation;
 
 #if ((defined(XDSIM_CONN) || defined(XDSIM_DATA) || defined(XDSIM_GATE)) && (defined(XDSIM_GATE) || defined(XDSIM_CONN)))
 typedef const void *Properties;
@@ -713,7 +710,7 @@ extern GateMut gate_deserialize(const struct Slice *bytes);
  * direction: one of the four the gate is facing (rotation)
  * dimension: the size of the bounding box previously provided
  */
-extern struct Graphic gate_draw(Gate gate, enum Direction direction, struct Vec2 bounding_box);
+extern struct Graphic gate_draw(Gate gate, struct Rotation rotation, struct Vec2 bounding_box);
 #endif
 
 #if ((defined(XDSIM_CONN) || defined(XDSIM_DATA) || defined(XDSIM_GATE)) && defined(XDSIM_GATE))
