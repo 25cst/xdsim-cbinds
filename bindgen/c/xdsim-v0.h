@@ -135,10 +135,12 @@ typedef void *PropertiesMut;
 typedef void *DataMut;
 #endif
 
-typedef struct Vec2 {
-    double x;
-    double y;
-} Vec2;
+typedef struct BoundingBox {
+    double top;
+    double bottom;
+    double left;
+    double right;
+} BoundingBox;
 
 #if ((defined(XDSIM_CONN) || defined(XDSIM_DATA) || defined(XDSIM_GATE)) && defined(XDSIM_GATE))
 /**
@@ -160,8 +162,7 @@ typedef struct GateDefinition {
     /**
      * The visual bounding box (dimension) of the gate
      */
-    struct Vec2 bottom_left;
-    struct Vec2 top_right;
+    struct BoundingBox bounding_box;
 } GateDefinition;
 #endif
 
@@ -176,6 +177,11 @@ typedef void *GateMut;
 typedef struct Rotation {
     double _0;
 } Rotation;
+
+typedef struct Vec2 {
+    double x;
+    double y;
+} Vec2;
 
 #if ((defined(XDSIM_CONN) || defined(XDSIM_DATA) || defined(XDSIM_GATE)) && (defined(XDSIM_GATE) || defined(XDSIM_CONN)))
 typedef const void *Properties;

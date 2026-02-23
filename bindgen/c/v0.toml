@@ -115,7 +115,8 @@ include = [
 
     # graphics/common.rs
     "Vec2",
-    "Direction",
+    "BoundingBox",
+    "Rotation",
 
     # graphics/element.rs
     "Element",
