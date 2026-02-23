@@ -15,8 +15,8 @@ pub struct GateDefinition {
     pub producers: Slice,
 
     /// The visual bounding box (dimension) of the gate
-    /// The bottom left corner is (0, 0), top right corner is (width, height)
-    pub bounding_box: Vec2,
+    pub bottom_left: Vec2,
+    pub top_right: Vec2,
 }
 
 /// Representing a single input connection that the gate take.

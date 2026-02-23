@@ -159,9 +159,9 @@ typedef struct GateDefinition {
     struct Slice producers;
     /**
      * The visual bounding box (dimension) of the gate
-     * The bottom left corner is (0, 0), top right corner is (width, height)
      */
-    struct Vec2 bounding_box;
+    struct Vec2 bottom_left;
+    struct Vec2 top_right;
 } GateDefinition;
 #endif
 
@@ -710,7 +710,10 @@ extern GateMut gate_deserialize(const struct Slice *bytes);
  * direction: one of the four the gate is facing (rotation)
  * dimension: the size of the bounding box previously provided
  */
-extern struct Graphic gate_draw(Gate gate, struct Rotation rotation, struct Vec2 bounding_box);
+extern struct Graphic gate_draw(Gate gate,
+                                struct Rotation rotation,
+                                struct Vec2 bottom_left,
+                                struct Vec2 top_right);
 #endif
 
 #if ((defined(XDSIM_CONN) || defined(XDSIM_DATA) || defined(XDSIM_GATE)) && defined(XDSIM_GATE))

@@ -19,7 +19,8 @@ unsafe extern "C" {
 
     /// direction: one of the four the gate is facing (rotation)
     /// dimension: the size of the bounding box previously provided
-    pub fn gate_draw(gate: Gate, rotation: Rotation, bounding_box: Vec2) -> Graphic;
+    pub fn gate_draw(gate: Gate, rotation: Rotation, bottom_left: Vec2, top_right: Vec2)
+    -> Graphic;
 
     pub fn gate_def(gate: Gate) -> GateDefinition;
 
